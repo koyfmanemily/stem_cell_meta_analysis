@@ -1,20 +1,70 @@
-function hedgesG(meanT, sdT, nT, meanC, sdC, nC, direction) {
-  const df = nT + nC - 2;
 
-  if (nT < 2 || nC < 2 || sdT < 0 || sdC < 0) {
-    throw new Error("Invalid study data");
+async function loadStudies() {
+  const response = await fetch("./data/studies.csv");
+
+  if (!response.ok) {
+    throw new Error("Could not load studies.csv");
   }
 
-  const pooledSD = Math.sqrt(
-    ((nT - 1) * sdT ** 2 + (nC - 1) * sdC ** 2) / df
-  );
+  const csv = await response.text();
 
-  if (pooledSD === 0) {
-    throw new Error("Pooled SD cannot be zero");
-  }
+  // Turn the CSV into rows
+  const lines = csv.trim().split(/\r?\n/);
+  const headers = lines[0].split(",");
 
-  const d = (meanT - meanC) / pooledSD;
-  const J = 1 - 3 / (4 * df - 1);
+  const studies = lines.slice(1).map(line => {
+    const values = line.split(",");
+    const study = {};
 
-  return d * J * (direction === "lower" ? -1 : 1);
+    headers.forEach((header, index) => {
+      study[header.trim()] = values[index].trim();
+    });
+
+    return study;
+  });
+
+  // Calculate Hedges' g for every study
+  studies.forEach(study => {
+    const nT = Number(study.n_treat);
+    const meanT = Number(study.mean_treat);
+    const sdT = Number(study.sd_treat);
+
+    const nC = Number(study.n_control);
+    const meanC = Number(study.mean_control);
+    const sdC = Number(study.sd_control);
+
+    const df = nT + nC - 2;
+
+    const pooledSD = Math.sqrt(
+      ((nT - 1) * sdT ** 2 +
+       (nC - 1) * sdC ** 2) / df
+    );
+
+    const d = (meanT - meanC) / pooledSD;
+    const correction = 1 - 3 / (4 * df - 1);
+
+    let g = d * correction;
+
+    // Make positive values mean improvement
+    if (study.direction === "lower") {
+      g = -g;
+    }
+
+    study.hedgesG = g;
+  });
+
+  // Show the results on the website
+  const results = document.getElementById("results");
+
+  results.innerHTML = studies.map(study => `
+    <p>
+      <strong>${study.study} (${study.therapy})</strong><br>
+      Outcome: ${study.outcome}<br>
+      Hedges' g: ${study.hedgesG.toFixed(3)}
+    </p>
+  `).join("");
+
+  console.log(studies);
 }
+
+loadStudies().catch(console.error);
