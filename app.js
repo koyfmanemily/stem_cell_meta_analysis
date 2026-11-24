@@ -1,3 +1,12 @@
+function calculateSD(error, n, errorType) {
+    if (errorType.toUpperCase() === "SEM") {
+        return error * Math.sqrt(n);
+    } else if (errorType.toUpperCase() === "SD") {
+        return error;
+    } else {
+        throw new Error("Invalid error type");
+    }
+}
 
 async function loadStudies() {
   const response = await fetch("./data/studies.csv", {
@@ -19,7 +28,7 @@ async function loadStudies() {
     const study = {};
 
     headers.forEach((header, index) => {
-      study[header.trim()] = values[index].trim();
+      study[header.trim().toLowerCase()] = values[index].trim();
     });
 
     return study;
@@ -29,11 +38,19 @@ async function loadStudies() {
   studies.forEach(study => {
     const nT = Number(study.n_treat);
     const meanT = Number(study.mean_treat);
-    const sdT = Number(study.sd_treat);
+    const sdT = calculateSD(
+    Number(study.error_treat),
+    Number(study.n_treat),
+    study.error_type
+);
 
     const nC = Number(study.n_control);
     const meanC = Number(study.mean_control);
-    const sdC = Number(study.sd_control);
+    const sdC = calculateSD(
+    Number(study.error_control),
+    Number(study.n_control),
+    study.error_type
+);
 
     const df = nT + nC - 2;
 
