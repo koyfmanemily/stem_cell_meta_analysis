@@ -105,6 +105,3 @@ async function loadStudies() {
 
 loadStudies().catch(console.error);
 
-}
-
-loadStudies().catch(console.error);
