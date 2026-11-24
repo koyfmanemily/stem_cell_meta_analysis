@@ -8,3 +8,10 @@ Kim 2012,MSC,VEGF_IC_4months,5,1.23,0.11,5,1.00,0.02,1,SEM
 Yun 2013,MSC,MWM_TargetQuadrantPercent_1e5,10,25.8,4.0,10,17.7,4.0,1,SEM
 Yun 2013,MSC,MWM_TargetQuadrantPercent_5e5,10,32.2,3.2,10,17.7,4.0,1,SEM
 Yun 2013,MSC,MWM_TargetQuadrantPercent_1e6,10,33.2,2.7,10,17.7,4.0,1,SEM
+Yan 2014,MSC,NOR_RecognitionIndex,5,64.2,6.2,5,50.5,4.1,1,SD
+Ruzicka 2016,MSC,MWM_TargetQuadrantPercent,16,45.50,7.17,14,39.67,4.17,1,SEM
+Nakano 2020,MSC,MWM_TargetQuadrantPercent,8,41.5,7.5,8,18.0,4.0,1,SEM
+Li 2016,NSC,MWM_PlatformCrossings,12,3.5,0.7,12,1.4,0.6,1,SEM
+Li 2016,NSC,MWM_TargetQuadrantDistancePercent,12,33.0,5.0,12,25.0,4.0,1,SEM
+McGinley 2018,NSC,MWM_TargetQuadrantPercent,10,41.0,5.0,10,26.0,5.0,1,SEM
+Zhu 2020,NSC,MWM_PlatformCrossings,12,1.65,0.32,12,0.65,0.32,1,SD
