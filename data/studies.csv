@@ -1,3 +1,2 @@
-study,therapy,outcome,n_treat,mean_treat,sd_treat,n_control,mean_control,sd_control,direction
-Blurton-Jones et al.,NSC,MWM_platform_crossings,18,7.65,2.55,9,4.55,2.10,higher
-PracticeNSC,NSC,memory_score,10,72,9,10,49,8,higher
+study,therapy,outcome,n_treat,mean_treat,error_treat,n_control,mean_control,error_control,direction,error_type
+Blurton-Jones 2009,NSC,MWM_platform_crossings,18,7.65,0.60,9,4.55,0.70,higher,SEM
