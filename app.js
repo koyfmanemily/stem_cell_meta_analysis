@@ -27,12 +27,13 @@ async function loadStudies() {
     // Turn the CSV into rows
     const lines = csv.trim().split(/\r?\n/);
     const headers = lines[0].split(",");
+    const normalizedHeaders = headers.map(h => h.trim().toLowerCase());
 
     const studies = lines.slice(1).map(line => {
         const values = line.split(",");
         const study = {};
 
-        headers.forEach((header, index) => {
+        normalizedHeaders.forEach((header, index) => {
             study[header.trim().toLowerCase()] =
                 values[index].trim();
         });
