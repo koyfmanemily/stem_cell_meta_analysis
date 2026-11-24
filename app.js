@@ -1,8 +1,8 @@
 
 async function loadStudies() {
-  const response = await fetch(
-    "./data/studies.csv?v=" + Date.now()
-);
+  const response = await fetch("./data/studies.csv", {
+    cache: "no-store"
+});
 
   if (!response.ok) {
     throw new Error("Could not load studies.csv");
