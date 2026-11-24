@@ -1,2 +1,7 @@
 study,therapy,outcome,n_treat,mean_treat,error_treat,n_control,mean_control,error_control,direction,error_type
 Blurton-Jones 2009,NSC,MWM_platform_crossings,18,7.65,0.60,9,4.55,0.70,higher,SEM
+Kim 2012,MSC,IL10_IV_4months,5,31.06,2.45,5,25.47,1.78,1,SEM
+Kim 2012,MSC,IL10_IC_6weeks,5,32.16,0.58,5,14.03,3.02,1,SEM
+Kim 2012,MSC,IL10_IC_4months,5,27.33,2.41,5,19.87,1.81,1,SEM
+Kim 2012,MSC,VEGF_IV_4months,5,1.22,0.03,5,1.00,0.02,1,SEM
+Kim 2012,MSC,VEGF_IC_4months,5,1.23,0.11,5,1.00,0.02,1,SEM
