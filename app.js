@@ -105,7 +105,6 @@ async function loadStudies() {
 
 loadStudies().catch(console.error);
 
-  console.log(studies);
 }
 
 loadStudies().catch(console.error);
